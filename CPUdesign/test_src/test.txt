@@ -1,0 +1,33 @@
+
+test.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+	.text			# Define beginning of text section
+	.global	_start		# Define entry _start
+
+_start:
+	li x3, 0xffffff0b	
+   0:	f0b00193          	li	gp,-245
+	li x4, 0xffffffab	
+   4:	fab00213          	li	tp,-85
+	la x5, _array		
+   8:	00000297          	auipc	t0,0x0
+   c:	02028293          	addi	t0,t0,32 # 28 <_array>
+	sb x3, 0(x5)		
+  10:	00328023          	sb	gp,0(t0)
+	sb x4, 1(x5)		
+  14:	004280a3          	sb	tp,1(t0)
+	la x5, _array		
+  18:	00000297          	auipc	t0,0x0
+  1c:	01028293          	addi	t0,t0,16 # 28 <_array>
+	lb x6, 0(x5)		
+  20:	00028303          	lb	t1,0(t0)
+	lb x7, 1(x5)		
+  24:	00128383          	lb	t2,1(t0)
+
+00000028 <_array>:
+  28:	0000                	unimp
+	...
